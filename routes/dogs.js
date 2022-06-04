@@ -3,15 +3,15 @@ const request = require('request')
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/dogs', function (req, res, next) {
-    const getData = () => new Promise((resolve, reject) => {
-        const url = 'https://dog.ceo/api/breeds/list/all'
+router.get('/', function (req, res, next) {
+    const fetchDogBreeds = (url) => new Promise((resolve, reject) => {
         request(url, (err, res, body) => {
             if (err) reject(new Error('invalid API call'))
             resolve(body)
         })
     })
-    getData.then(res.send)
-});
+
+    fetchDogBreeds('https://dog.ceo/api/breeds/list/all').then(data => res.send(data))
+})
 
 module.exports = router;

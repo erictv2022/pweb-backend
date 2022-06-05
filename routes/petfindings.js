@@ -28,13 +28,17 @@ async function getById(ctx) {
 
 async function createPetFinding(ctx) {
     const body = ctx.request.body
-    let result = await model.add(body)
-    if (result) {
-        ctx.status = 201
-        ctx.body = result
-    } else {
-        ctx.status = 201
-        ctx.body = "{}"
+    try {
+        let result = await model.add(body)
+        if (result) {
+            ctx.status = 201
+            ctx.body = result
+        } else {
+            ctx.status = 201
+            ctx.body = "{}"
+        }
+    } catch (e) {
+        ctx.status = 400
     }
 }
 

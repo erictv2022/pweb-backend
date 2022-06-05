@@ -4,9 +4,12 @@ const can = require('../permission/user-permission')
 const auth = require('../controllers/authentication')
 const router = Router({prefix: '/api/v1/users'})
 const { StatusCode } = require('status-code-enum')
+const bodyParser = require("koa-bodyparser");
+const {validatePetFindings} = require("../controllers/validation");
 
 
 router.get('/', auth, getAll)
+router.post('/', bodyParser(), createUser)
 
 async function getAll(ctx) {
   try {
@@ -23,5 +26,22 @@ async function getAll(ctx) {
     ctx.status = StatusCode.ClientErrorBadRequest
   }
 }
+
+async function createUser(ctx) {
+  const body = ctx.request.body
+  try {
+    let result = await model.add(body)
+    if (result) {
+      ctx.status = 201
+      ctx.body = result
+    } else {
+      ctx.status = 201
+      ctx.body = "{}"
+    }
+  } catch (e) {
+    ctx.status = 400
+  }
+}
+
 
 module.exports = router

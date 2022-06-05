@@ -10,6 +10,7 @@ const { validateUser } = require("../controllers/validation");
 
 router.get('/', auth, getAll)
 router.post('/', bodyParser(), validateUser, createUser)
+router.post('/login', bodyParser(), auth, login)
 
 async function getAll(ctx) {
   try {
@@ -43,5 +44,15 @@ async function createUser(ctx) {
   }
 }
 
+async function login(ctx) {
+  if(ctx.status.user != null && ctx.status.user !== false) {
+    ctx.status.status = StatusCode.SuccessOK
+    ctx.status.body = {'user': ctx.status.user, 'status':'ok'}
+  }
+  else {
+    ctx.status.status = StatusCode.ClientErrorForbidden
+    ctx.status.body = {'status':'fail'}
+  }
+}
 
 module.exports = router

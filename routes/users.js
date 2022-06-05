@@ -5,11 +5,11 @@ const auth = require('../controllers/authentication')
 const router = Router({prefix: '/api/v1/users'})
 const { StatusCode } = require('status-code-enum')
 const bodyParser = require("koa-bodyparser");
-const {validatePetFindings} = require("../controllers/validation");
+const { validateUser } = require("../controllers/validation");
 
 
 router.get('/', auth, getAll)
-router.post('/', bodyParser(), createUser)
+router.post('/', bodyParser(), validateUser, createUser)
 
 async function getAll(ctx) {
   try {

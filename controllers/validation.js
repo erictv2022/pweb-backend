@@ -1,22 +1,31 @@
 const {Validator, ValidationError} = require('jsonschema')
-const petFindingSchema = require('../schemas/petfinding.schema.js');
-const v = new Validator()
+const petFindingSchema = require('../schemas/petfinding.schema.js')
+const userSchema = require('../schemas/user.schema')
+const StatusCode = require("status-code-enum");
+const validator = new Validator()
+
+const validationOptions = {
+    throwError: true,
+    allowUnknownAttributes: false
+}
 
 exports.validatePetFindings = async (ctx, next) => {
+    await commonHandle(ctx, next, petFindingSchema)
+}
 
-    const validationOptions = {
-        throwError: true,
-        allowUnknownAttributes: false
-    }
+exports.validateUser = async (ctx, next) => {
+    await commonHandle(ctx, next, userSchema)
+}
+
+const commonHandle = async (ctx, next, schema) => {
     const body = ctx.request.body
-
     try {
-        v.validate(body, petFindingSchema, validationOptions)
+        validator.validate(body, schema, validationOptions)
         await next()
     } catch (error) {
         if (error instanceof ValidationError) {
             ctx.body = error
-            ctx.status = 400
+            ctx.status = StatusCode.ClientErrorBadRequest
         } else {
             throw error
         }

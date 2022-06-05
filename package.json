@@ -20,6 +20,8 @@
     "morgan": "~1.9.1",
     "passport-http": "^0.3.0",
     "request": "^2.88.2",
-    "sequelize": "^6.20.1"
+    "role-acl": "^4.5.4",
+    "sequelize": "^6.20.1",
+    "status-code-enum": "^1.0.0"
   }
 }

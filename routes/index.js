@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const Router = require('koa-router')
+const bodyParser = require('koa-bodyparser')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const auth = require('../controllers/authentication')
 
-module.exports = router;
+const router = Router({prefix: '/api/v1'})
+router.get('/', publicAPI);
+router.get('/admin', auth, privateAPI);
+
+function publicAPI(ctx) {
+  ctx.body = {message: 'PUBLIC PAGE: You requested a new message URI (root) of the API'}
+}
+
+function privateAPI(ctx) {
+  const user = ctx.state.user;
+  ctx.body = {message: `Hello ${user.username} you registered on ${user.dateRegistered}`}
+}
+
+module.exports = router

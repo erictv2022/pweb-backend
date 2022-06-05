@@ -31,6 +31,9 @@ const app = new Koa();
 const petfindings = require('./routes/petfindings')
 app.use(petfindings.routes())
 
+const user = require('./routes/users')
+app.use(user.routes)
+
 // static routes
 app.use(static({dir:'docs', router: '/doc/'}))
 

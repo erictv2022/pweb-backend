@@ -3,13 +3,15 @@ const bodyParser = require('koa-bodyparser')
 const model = require('../models/petfindings')
 const {validatePetFindings} = require('../controllers/validation')
 
+const auth = require('../controllers/authentication')
+
 const router = Router({prefix: '/api/v1/petfindings'})
 
 router.get('/', getAll)
 router.post('/', bodyParser(), validatePetFindings, createPetFinding)
 router.get('/:id([0-9]{1,})', getById)
-router.put('/:id([0-9]{1,})', updatePetFinding)
-router.del('/:id([0-9]{1,})', deletePetFinding)
+router.put('/:id([0-9]{1,})', auth, updatePetFinding)
+router.del('/:id([0-9]{1,})', auth, deletePetFinding)
 
 async function getAll(ctx, next) {
     let results = await model.getAll()

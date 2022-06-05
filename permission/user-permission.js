@@ -4,11 +4,11 @@ const ac = new AccessControl()
 
 ac.grant('admin').execute('read').on('user')
 ac.grant('admin').execute('read').on('users')
-ac.grant('admin').execute('update').on('user')
+ac.grant('admin').execute('update').on(['user', 'petfinding'])
 ac.grant('admin')
     .condition({Fn: 'NOT_EQUALS', args: {'requester': '$.owner'}})
     .execute('delete')
-    .on('user')
+    .on(['user', 'petfinding'])
 
 ac.grant('user')
     .condition({Fn: 'EQUALS', args: {'requester': '$.owner'}})

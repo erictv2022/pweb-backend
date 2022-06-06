@@ -30,3 +30,5 @@ async function createMessage(ctx){
         ctx.status = StatusCode.ClientErrorBadRequest
     }
 }
+
+module.exports = router

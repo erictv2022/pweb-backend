@@ -32,8 +32,12 @@ async function getAll(ctx, next) {
 async function getById(ctx) {
     let id = ctx.params.id
     let petFinding = await model.getById(id)
-    if (petFinding.length) {
-        ctx.body = petFinding[0]
+    try {
+        if (petFinding.length) {
+            ctx.body = petFinding[0]
+        }
+    } catch (e) {
+        ctx.status = 404
     }
 }
 

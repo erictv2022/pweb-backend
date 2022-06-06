@@ -1,5 +1,5 @@
 const database = require('../helpers/database')
-const {StatusCode} = require('status-code-enum')
+const {StatusCode} = require("../helpers/error-code");
 
 exports.findByUsername = async function getByUsername(username) {
     const query = 'select * from users where username = ?'

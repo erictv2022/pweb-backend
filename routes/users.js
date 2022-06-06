@@ -3,7 +3,7 @@ const model = require('../models/users')
 const can = require('../permission/user-permission')
 const auth = require('../controllers/authentication')
 const router = Router({prefix: '/api/v1/users'})
-const { StatusCode } = require('status-code-enum')
+const { StatusCode } = require("../helpers/error-code");
 const bodyParser = require("koa-bodyparser");
 const { validateUser } = require("../controllers/validation");
 

@@ -42,7 +42,7 @@ app.use(static({dir:'docs', router: '/doc/'}))
 
 // app server state
 app.on('error', (err, ctx) => {
-    log.error('server error', err, ctx)
+    logger.error('server error', err, ctx)
 });
 
 module.exports = app;

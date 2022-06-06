@@ -26,7 +26,8 @@ app.use(static({dir:'docs', router: '/doc/'}))
 
 // app server state
 app.on('error', (err, ctx) => {
-    logger.error('server error', err, ctx)
+    // logger.error('server error', err, ctx)
+    console.log(err, ctx)
 });
 
 let port = process.env.PORT || 10888;
@@ -37,12 +38,13 @@ app.listen(port)
 app.use(cors({
     origin: function (ctx) {
         const whitelist = ['repl.co']
-        for(let domain in whitelist){
-            if ((ctx.domain.includes(domain))){
-                return "*";
-            }
-            }
-        return `http://localhost:${port}`;
+        // for(let domain in whitelist){
+        //     if ((ctx.request.includes(domain))){
+        //         return "*";
+        //     }
+        //     }
+        return "*";
+        // return `http://localhost:${port}`;
     },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
     maxAge: 5,

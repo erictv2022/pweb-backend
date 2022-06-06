@@ -12,6 +12,10 @@ router.get('/', auth, getAll)
 router.post('/', bodyParser(), validateUser, createUser)
 router.post('/login', bodyParser(), auth, login)
 
+/**
+ * Get all users
+ * @async
+ */
 async function getAll(ctx) {
   try {
     const permission = can.readAll(ctx.state.user)
@@ -28,6 +32,9 @@ async function getAll(ctx) {
   }
 }
 
+/**
+ * Create user
+ */
 async function createUser(ctx) {
   const body = ctx.request.body
   try {
@@ -44,6 +51,10 @@ async function createUser(ctx) {
   }
 }
 
+/**
+ * User login
+ * @async
+ */
 async function login(ctx) {
   if(ctx.status.user != null && ctx.status.user !== false) {
     ctx.status.status = StatusCode.SuccessOK

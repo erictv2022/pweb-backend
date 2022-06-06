@@ -1,0 +1,83 @@
+  openapi: 3.0.0
+  info:
+    version: 1.0.0
+    title: Back End API for pet findings
+    description: Pet Finding API
+    contact:
+      name: Eric Yu
+      email: 217014110@stu.vtc.edu.hk
+    license:
+      name: Apache 2.0
+      url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  servers:
+    - url: 'https://pweb-backend.erictv2022.repl.co/'
+      description: Development Server
+  tags:
+    - name: Users
+      description: API endpoint for user management
+    - name: Dogs
+      description: Dogs list
+    - name: Messages
+      description: API endpoint for message management
+    - name: Pet Findings
+      description: Finding of pet available and management
+  paths:
+    /api/v1/petfindings/:
+      get:
+        tags:
+          - Pet Findings
+        responses:
+          '200':
+            description: get success
+          '404':
+            description: resource not found
+      description:
+        List all the pet findings
+      post:
+        tags:
+          - Pet Findings
+        responses:
+          '201':
+            description: create ok
+          '400':
+            description: fail operation
+        description:
+          create a pet finding
+    /api/v1/petfindings/{id}:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: numeric id for pet finding
+      get:
+        tags:
+          - Pet Findings
+        responses:
+          '200':
+            description: find by id success
+          '404':
+            description: item not found
+        description:
+          Get a finding by id
+      put:
+        tags:
+          - Pet Findings
+        responses:
+          '201':
+            description: update success
+          '401':
+            description: item not exist
+        description:
+          update the finding
+      delete:
+        tags:
+          - Pet Findings
+        responses:
+          '204':
+            description: delete success
+          '404':
+            description: item not available to delete
+        description:
+          delete a finding by id

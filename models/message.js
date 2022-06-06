@@ -1,5 +1,5 @@
 const {Sequelize, Model, DataTypes} = require('sequelize');
-const info = require('config')
+const info = require('../config')
 
 const sequelize = new Sequelize(info.config.database, info.config.user, info.config.password, {
     host: `${info.config.host}:${info.config.port}`,

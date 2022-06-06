@@ -1,6 +1,6 @@
 const createError = require('http-errors');
 const Koa = require('koa')
-const static = require('koa-static-router')
+const staticRouter = require('koa-static-router')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -22,11 +22,12 @@ app.use(dog.routes())
 app.use(message.routes())
 
 // static routes
-app.use(static({dir:'docs', router: '/doc/'}))
+app.use(staticRouter({dir:'docs', router: '/doc/'}))
 
 // app server state
 app.on('error', (err, ctx) => {
-    logger.error('server error', err, ctx)
+    // logger.error('server error', err, ctx)
+    console.log(err, ctx)
 });
 
 let port = process.env.PORT || 10888;
@@ -37,12 +38,13 @@ app.listen(port)
 app.use(cors({
     origin: function (ctx) {
         const whitelist = ['repl.co']
-        for(let domain in whitelist){
-            if ((ctx.domain.includes(domain))){
-                return "*";
-            }
-            }
-        return `http://localhost:${port}`;
+        // for(let domain in whitelist){
+        //     if ((ctx.request.includes(domain))){
+        //         return "*";
+        //     }
+        //     }
+        return "*";
+        // return `http://localhost:${port}`;
     },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
     maxAge: 5,

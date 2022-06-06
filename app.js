@@ -32,7 +32,10 @@ const petfindings = require('./routes/petfindings')
 app.use(petfindings.routes())
 
 const user = require('./routes/users')
-app.use(user.routes)
+app.use(user.routes())
+
+const dog = require('./routes/dogs')
+app.use(dog.routes())
 
 // static routes
 app.use(static({dir:'docs', router: '/doc/'}))

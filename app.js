@@ -1,6 +1,6 @@
 const createError = require('http-errors');
 const Koa = require('koa')
-const static = require('koa-static-router')
+const staticRouter = require('koa-static-router')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -22,7 +22,7 @@ app.use(dog.routes())
 app.use(message.routes())
 
 // static routes
-app.use(static({dir:'docs', router: '/doc/'}))
+app.use(staticRouter({dir:'docs', router: '/doc/'}))
 
 // app server state
 app.on('error', (err, ctx) => {

@@ -21,6 +21,8 @@ const Message = sequelize.define('message', {
     freezeTableName: true
 });
 
+module.exports = Message
+
 exports.createMessage = function (firstname, lastname, message, findingId) {
     return Message.sync().then(() => {
         return Message.create({

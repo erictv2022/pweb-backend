@@ -8,11 +8,10 @@ router.get('/finding/:findingId([0-9]{1,})', getMessagesByFindingId)
 router.post('/finding/:findingId([0-9]{1,})', bodyParser, createMessage)
 
 async function getMessagesByFindingId(ctx) {
-    let id = ctx.params.id
-    let petFinding = await model.getById(id)
-    if (petFinding.length) {
-        ctx.body = petFinding[0]
-    }
+    const findAll = model.Message.findAll({ where: { findingId: [ctx.request.findingId] } }).then(messages => {
+        ctx.status = StatusCode.SuccessOK
+        ctx.body = messages
+    })
 }
 
 async function createMessage(ctx){

@@ -2,7 +2,7 @@ const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 const request = require('request')
 const model = require("../models/petfindings");
-const StatusCode = require("status-code-enum");
+const StatusCode = require("../helpers/error-code");
 const router = Router({prefix: '/api/v1/dogs'})
 
 /**

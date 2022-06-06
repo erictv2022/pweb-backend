@@ -7,34 +7,15 @@ const logger = require('morgan');
 
 const app = new Koa();
 
-// view engine setup
-// app.use(logger('dev'));
-// app.use(cookieParser());
-
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
-
-// // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
-
 //routes
+const home = require('./routes/index')
 const petfindings = require('./routes/petfindings')
-app.use(petfindings.routes())
-
 const user = require('./routes/users')
-app.use(user.routes())
-
 const dog = require('./routes/dogs')
+
+app.use(home.routes())
+app.use(petfindings.routes())
+app.use(user.routes())
 app.use(dog.routes())
 
 // static routes
@@ -42,7 +23,10 @@ app.use(static({dir:'docs', router: '/doc/'}))
 
 // app server state
 app.on('error', (err, ctx) => {
-    log.error('server error', err, ctx)
+    logger.error('server error', err, ctx)
 });
 
-module.exports = app;
+let port = process.env.PORT || 10888;
+
+app.listen(port)
+console.log("API is ready on " + port)

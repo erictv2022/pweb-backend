@@ -1,7 +1,7 @@
 const {Validator, ValidationError} = require('jsonschema')
 const petFindingSchema = require('../schemas/petfinding.schema.js')
 const userSchema = require('../schemas/user.schema')
-const StatusCode = require("status-code-enum");
+const StatusCode = require("../helpers/error-code");
 const validator = new Validator()
 
 const validationOptions = {

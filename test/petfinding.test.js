@@ -1,5 +1,6 @@
 const request = require('supertest')
 const app = require('./app.test')
+const info = require('../config')
 
 expected = [{
     "id": 1,
@@ -13,6 +14,14 @@ expected = [{
     "published": null,
     "userid": 0
 }]
+
+// change to testing database
+beforeAll(()=>{
+    info.config.user = "nncwyouq"
+    info.config.database = "nncwyouq"
+    info.config.host = "tiny.db.elephantsql.com"
+    info.config.password = "7Qwp5a-5cC6SFPtyE-sfVC6M9bZzxfXw"
+})
 
 describe('Get all pet findings', () => {
     it('Return all pet findings', async () => {

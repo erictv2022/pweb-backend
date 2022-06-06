@@ -1,0 +1,40 @@
+{
+  "name": "pweb-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jest": "^28.1.0",
+    "jsdoc": "^3.6.10",
+    "jsonschema": "^1.4.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-passport": "^4.1.4",
+    "koa-router": "^10.1.1",
+    "koa-static-router": "^1.5.0",
+    "koa2-cors": "^2.0.6",
+    "morgan": "~1.9.1",
+    "passport-http": "^0.3.0",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "request": "^2.88.2",
+    "role-acl": "^4.5.4",
+    "sequelize": "^6.20.1",
+    "supertest": "^6.2.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}

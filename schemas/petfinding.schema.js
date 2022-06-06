@@ -9,11 +9,11 @@ module.exports = {
       "description": "dog's breed",
       "type": "string"
     },
-    "subBreed": {
+    "subbreed": {
       "description": "dog's sub breed",
       "type": "string"
     },
-    "centerLocation": {
+    "location": {
       "description": "shelter location where pets staying",
       "type": "string"
     },

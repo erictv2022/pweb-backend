@@ -11,8 +11,9 @@ exports.getById = async function getById (id) {
 //list all the petfindings in the database
 exports.getAll = async function getAll (page, limit = 10, order) {
     // TODO: use page, limit, order to give pagination
-    let query = "SELECT * FROM petfindings limit ${limit};"
-    let data = await db.run_query(query)
+    let query = "SELECT * FROM petfindings limit ?;"
+    let values = [limit]
+    let data = await db.run_query(query, values)
     return data
 }
 

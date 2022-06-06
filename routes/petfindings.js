@@ -20,6 +20,7 @@ router.del('/:id([0-9]{1,})', auth, deletePetFinding)
 async function getAll(ctx, next) {
     let results = await model.getAll()
     if (results.length) {
+        ctx.status = 200
         ctx.body = results
     }
 }

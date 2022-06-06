@@ -4,6 +4,7 @@ const static = require('koa-static-router')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('koa2-cors');
 
 const app = new Koa();
 
@@ -31,4 +32,23 @@ app.on('error', (err, ctx) => {
 let port = process.env.PORT || 10888;
 
 app.listen(port)
+
+//CORS
+app.use(cors({
+    origin: function (ctx) {
+        const whitelist = ['repl.co']
+        for(let domain in whitelist){
+            if ((ctx.domain.includes(domain))){
+                return "*";
+            }
+            }
+        return `http://localhost:${port}`;
+    },
+    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
+
 console.log("API is ready on " + port)

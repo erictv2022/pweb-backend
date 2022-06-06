@@ -13,6 +13,10 @@ router.get('/:id([0-9]{1,})', getById)
 router.put('/:id([0-9]{1,})', auth, updatePetFinding)
 router.del('/:id([0-9]{1,})', auth, deletePetFinding)
 
+/**
+ * Get all the pet findings
+ * @async
+ */
 async function getAll(ctx, next) {
     let results = await model.getAll()
     if (results.length) {
@@ -20,6 +24,10 @@ async function getAll(ctx, next) {
     }
 }
 
+/**
+ * Get the pet finding by id
+ * @async
+ */
 async function getById(ctx) {
     let id = ctx.params.id
     let petFinding = await model.getById(id)
@@ -28,6 +36,10 @@ async function getById(ctx) {
     }
 }
 
+/**
+ * Create a pet finding record
+ * @async
+ */
 async function createPetFinding(ctx) {
     const body = ctx.request.body
     try {
@@ -44,6 +56,10 @@ async function createPetFinding(ctx) {
     }
 }
 
+/**
+ * Update a existing pet finding records
+ * @async
+ */
 async function updatePetFinding(ctx) {
     const body = ctx.request.body
     let result = await model.add(body)
@@ -56,6 +72,10 @@ async function updatePetFinding(ctx) {
     }
 }
 
+/**
+ * Delete a pet finding record by id
+ * @async
+ */
 async function deletePetFinding(ctx) {
     let idToDelete = ctx.params.id
     try {

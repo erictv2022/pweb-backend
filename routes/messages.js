@@ -7,6 +7,10 @@ const router = Router({prefix: '/api/v1/messages'})
 router.get('/finding/:findingId([0-9]{1,})', getMessagesByFindingId)
 router.post('/finding/:findingId([0-9]{1,})', bodyParser, createMessage)
 
+/**
+ * Get all the messages related to the same pet finding record
+ * @async
+ */
 async function getMessagesByFindingId(ctx) {
     const findAll = model.Message.findAll({ where: { findingId: [ctx.request.findingId] } }).then(messages => {
         ctx.status = StatusCode.SuccessOK
@@ -14,6 +18,10 @@ async function getMessagesByFindingId(ctx) {
     })
 }
 
+/**
+ * Create a message for the pet finding record
+ * @async
+ */
 async function createMessage(ctx){
     try {
         const firstname = ctx.request.body['firstname'] || ""

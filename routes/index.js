@@ -7,6 +7,9 @@ const router = Router({prefix: '/api/v1'})
 router.get('/', publicAPI);
 router.get('/admin', auth, privateAPI);
 
+/**
+ * Public entry point of api
+ */
 function publicAPI(ctx) {
   ctx.body = {message: 'PUBLIC PAGE: You requested a new message URI (root) of the API'}
 }

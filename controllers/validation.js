@@ -9,14 +9,29 @@ const validationOptions = {
     allowUnknownAttributes: false
 }
 
+/**
+ * @async
+ * @exports
+ */
 exports.validatePetFindings = async (ctx, next) => {
     await commonHandle(ctx, next, petFindingSchema)
 }
 
+/**
+ * @async
+ * @exports
+ */
 exports.validateUser = async (ctx, next) => {
     await commonHandle(ctx, next, userSchema)
 }
 
+/**
+ * Common handler for schema validation
+ * @async
+ * @param ctx request and response context
+ * @param next next handler
+ * @param schema need to validate
+ */
 const commonHandle = async (ctx, next, schema) => {
     const body = ctx.request.body
     try {

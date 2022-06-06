@@ -39,3 +39,26 @@ describe('Get finding by id', () => {
         expect(res.type).toEqual("application/json")
     })
 })
+
+expectedInvalidItem = {
+    "id": 1,
+    "breed": null,
+    "subbreed": null,
+    "location": "HKG",
+    "summary": "brown baby",
+    "datecreated": "2022-06-05T19:49:23.500Z",
+    "datemodified": "2022-06-05T19:49:23.500Z",
+    "imageurl": null,
+    "published": null,
+    "userid": 0
+}
+
+describe('Create a new pet finding', () => {
+    it('Create a new pet finding', async () => {
+        const res = await request(app.callback()).post('/api/v1/petfindings/').send(
+            expectedInvalidItem
+        )
+        expect(res.statusCode).toEqual(400)
+        expect(res.type).toEqual("application/json")
+    })
+})

@@ -13,7 +13,7 @@ const petfindings = require('./routes/petfindings')
 const user = require('./routes/users')
 const dog = require('./routes/dogs')
 
-app.use(home.routes)
+app.use(home.routes())
 app.use(petfindings.routes())
 app.use(user.routes())
 app.use(dog.routes())

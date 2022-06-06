@@ -8,13 +8,14 @@ const logger = require('morgan');
 const app = new Koa();
 
 //routes
+const home = require('./routes/index')
 const petfindings = require('./routes/petfindings')
-app.use(petfindings.routes())
-
 const user = require('./routes/users')
-app.use(user.routes())
-
 const dog = require('./routes/dogs')
+
+app.use(home.routes)
+app.use(petfindings.routes())
+app.use(user.routes())
 app.use(dog.routes())
 
 // static routes
@@ -28,4 +29,4 @@ app.on('error', (err, ctx) => {
 let port = process.env.PORT || 10888;
 
 app.listen(port)
-console.log('API is ready')
+console.log("API is ready on " + port)

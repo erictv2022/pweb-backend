@@ -11,6 +11,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "jsdoc": "^3.6.10",
     "jsonschema": "^1.4.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",

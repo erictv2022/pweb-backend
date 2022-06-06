@@ -1,5 +1,24 @@
 const {Sequelize, QueryTypes} = require('sequelize')
 const info = require('../config')
+const sequelizeConnection = new Sequelize(`postgres://${info.config.user}:${info.config.password}@${info.config.host}:${info.config.port}/${info.config.database}`)
+
+exports.connect_database = async function connection_database(){
+    try {
+        await sequelizeConnection.authenticate()
+    } catch (error) {
+        console.error(error, query, values);
+        throw 'Database query error'
+    }
+}
+
+exports.close_database = async function close_database(){
+    try {
+        await sequelizeConnection.close()
+    } catch (error) {
+        console.error(error, query, values);
+        throw 'Database query error'
+    }
+}
 
 // define an async utility function to get a connection
 // run an SQL query then end the connection

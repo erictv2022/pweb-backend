@@ -10,16 +10,18 @@ const validationOptions = {
 }
 
 /**
- * @async
- * @exports
+ * A module to run JSON Schema based validation on request/response data. * @module controllers/validation
+ * @author Eric Yu
+ * @see schemas/* for JSON Schema definition files
  */
 exports.validatePetFindings = async (ctx, next) => {
     await commonHandle(ctx, next, petFindingSchema)
 }
 
 /**
- * @async
- * @exports
+ * A module to run JSON Schema based validation on request/response data. * @module controllers/validation
+ * @author Eric Yu
+ * @see schemas/* for JSON Schema definition files
  */
 exports.validateUser = async (ctx, next) => {
     await commonHandle(ctx, next, userSchema)

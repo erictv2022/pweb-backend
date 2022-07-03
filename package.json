@@ -13,7 +13,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "jest": "^28.1.0",
+    "jest": "^28.1.2",
     "jsdoc": "^3.6.10",
     "jsonschema": "^1.4.1",
     "koa": "^2.13.4",
@@ -29,7 +29,7 @@
     "request": "^2.88.2",
     "role-acl": "^4.5.4",
     "sequelize": "^6.20.1",
-    "supertest": "^6.2.3"
+    "supertest": "^6.2.4"
   },
   "jest": {
     "testEnvironment": "node",

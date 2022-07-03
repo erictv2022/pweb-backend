@@ -87,7 +87,7 @@ async function createPetFinding(ctx) {
         let result = await model.add(body)
         if (result) {
             ctx.status = 201
-            ctx.body = result
+            ctx.body = await model.getById(result[0][0]['id'])
         } else {
             ctx.status = 201
             ctx.body = "{}"

@@ -43,10 +43,9 @@ exports.add = async function add(petfinding) {
         parm += '?,'
     }
     parm = parm.slice(0, -1)
-    let query = `INSERT INTO petfindings (${keys}) VALUES (${parm})`
+    let query = `INSERT INTO petfindings (${keys}) VALUES (${parm}) returning id`
     try {
-        await db.run_update(query, values)
-        return {"status": 201}
+        return await db.run_insert(query, values)
     } catch (error) {
         return error
     }

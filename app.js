@@ -8,7 +8,7 @@ const cors = require('koa2-cors');
 const bodyParser = require('koa-bodyparser')
 
 const app = new Koa();
-// app.use(bodyParser())
+app.use(bodyParser())
 
 //routes
 const home = require('./routes/index')

@@ -13,11 +13,7 @@ beforeAll(()=>{
 })
 
 const expected = [{
-    "id": 1,
-    "firstname": "eric",
-    "lastname": "yu",
     "finding_id": 1,
-    "email": "eric@example.com",
 }]
 
 describe('Get all messages of specific finding', () => {
@@ -25,7 +21,8 @@ describe('Get all messages of specific finding', () => {
         const res = await request(app.callback()).get('/api/v1/messages/finding/1').send({})
         expect(res.statusCode).toEqual(200)
         expect(res.type).toEqual(constants.JSONFormat)
-        expect(res.body).toMatchObject(expected)
+        expect(res.body.slice(0,1)).toMatchObject(expected)
+        expect(res.body.length).toBeGreaterThan(0)
     })
 })
 
@@ -38,7 +35,6 @@ describe('Get all messages of invalid finding ID', () => {
 })
 
 const expectedPostMessage = {
-    "id": 1,
     "firstname": "eric",
     "lastname": "yu",
     "finding_id": 1,

@@ -10,6 +10,8 @@ const router = Router({prefix: '/api/v1/petfindings'})
 router.get('/', getAll)
 router.post('/', bodyParser(), validatePetFindings, createPetFinding)
 router.get('/:id([0-9]{1,})', getById)
+router.get('/search/:keywords([a-zA-Z0-9]{1,})', searchByKeywords)
+router.get('/search/breed/:keywords([a-zA-Z0-9]{1,})', searchByBreed)
 router.put('/:id([0-9]{1,})', auth, updatePetFinding)
 router.del('/:id([0-9]{1,})', auth, deletePetFinding)
 
@@ -38,6 +40,40 @@ async function getById(ctx) {
         }
     } catch (e) {
         ctx.status = 404
+    }
+}
+
+async function searchByKeywords(ctx) {
+    try {
+        let keywords = ctx.params.keywords
+        let searchResult = await model.searchDB(keywords)
+        if (searchResult.length) {
+            ctx.status = 200
+            ctx.body = searchResult
+        }
+        else {
+            ctx.status = 404
+            ctx.body = searchResult
+        }
+    } catch (e) {
+        ctx.status = 400
+    }
+}
+
+async function searchByBreed(ctx) {
+    try {
+        let keywords = ctx.params.keywords
+        let searchResult = await model.searchDBBreed(keywords)
+        if (searchResult.length) {
+            ctx.status = 200
+            ctx.body = searchResult
+        }
+        else {
+            ctx.status = 404
+            ctx.body = searchResult
+        }
+    } catch (e) {
+        ctx.status = 400
     }
 }
 

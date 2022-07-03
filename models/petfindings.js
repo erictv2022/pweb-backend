@@ -17,6 +17,22 @@ exports.getAll = async function getAll (page, limit = 10, order) {
     return data
 }
 
+exports.searchDB = async function searchDB (keywords) {
+    let query = "SELECT * FROM petfindings WHERE breed ILIKE ? OR subbreed ILIKE ? OR shelter ILIKE ? OR summary ILIKE ?"
+    let values = [`%${keywords}%`, `%${keywords}%`, `%${keywords}%`, `%${keywords}%`]
+    console.log(values)
+    let data = await db.run_query(query, values)
+    return data
+}
+
+exports.searchDBBreed = async function searchDBBreed (keywords) {
+    let query = "SELECT * FROM petfindings WHERE breed ILIKE ? OR subbreed ILIKE ?"
+    let values = [`%${keywords}%`, `%${keywords}%`]
+    console.log(values)
+    let data = await db.run_query(query, values)
+    return data
+}
+
 //create a new petfinding in the database
 exports.add = async function add (petfinding) {
     let keys = Object.keys(petfindings)

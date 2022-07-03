@@ -13,7 +13,7 @@ module.exports = {
       "description": "dog's sub breed",
       "type": "string"
     },
-    "location": {
+    "shelter": {
       "description": "shelter location where pets staying",
       "type": "string"
     },
@@ -21,7 +21,7 @@ module.exports = {
       "description": "Optional short text summary of pet finding",
       "type": "string"
     },
-    "imageURL": {
+    "imageurl": {
       "description": "URL for main image to show in finding",
       "type": "uri"
     },
@@ -29,11 +29,11 @@ module.exports = {
       "description": "Is the finding published or not",
       "type": "boolean"
     },
-    "userId": {
+    "userid": {
       "description": "User ID of the finding created",
       "type": "integer",
       "minimum": 0
     },
   },
-  "required": ["breed", "centerLocation", "userId"]
+  "required": ["breed", "shelter", "userid"]
 }

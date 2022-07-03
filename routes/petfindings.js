@@ -103,10 +103,10 @@ async function createPetFinding(ctx) {
  */
 async function updatePetFinding(ctx) {
     const body = ctx.request.body
-    let result = await model.add(body)
+    let result = await model.update(body, ctx.params.id)
     if (result) {
         ctx.status = 201
-        ctx.body = result
+        ctx.body = await model.getById(ctx.params.id)
     } else {
         ctx.status = 201
         ctx.body = "{}"

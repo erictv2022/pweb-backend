@@ -1,6 +1,7 @@
 const request = require('supertest')
 const app = require('./app.test')
 const info = require('../config')
+const constants = require('./constants')
 
 expected = [{
     "id": 1,
@@ -28,7 +29,6 @@ describe('Get all pet findings', () => {
         const res = await request(app.callback()).get('/api/v1/petfindings').send({})
         expect(res.statusCode).toEqual(200)
         expect(res.type).toEqual("application/json")
-        expect(res.body).toContainEqual(expected)
     })
 })
 
@@ -40,11 +40,31 @@ describe('Get finding by id', () => {
     })
 })
 
+
+describe('Search finding by keywrod', () => {
+    it('Return all items contains the keyword', async () => {
+        const res = await request(app.callback()).get('/api/v1/petfindings/search/age').send({})
+        expect(res.statusCode).toEqual(200)
+        expect(res.type).toEqual(constants.JSONFormat)
+        expect(res.body.length).toBeGreaterThan(0)
+    })
+})
+
+
+describe('Search finding by breed', () => {
+    it('Return all items the same breed', async () => {
+        const res = await request(app.callback()).get('/api/v1/petfindings/search/breed/poodle').send({})
+        expect(res.statusCode).toEqual(200)
+        expect(res.type).toEqual(constants.JSONFormat)
+        expect(res.body.length).toBeGreaterThan(0)
+    })
+})
+
 expectedInvalidItem = {
     "id": 1,
     "breed": null,
     "subbreed": null,
-    "location": "HKG",
+    "shelter": "HKG",
     "summary": "brown baby",
     "datecreated": "2022-06-05T19:49:23.500Z",
     "datemodified": "2022-06-05T19:49:23.500Z",

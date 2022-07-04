@@ -10,7 +10,7 @@ const { validateUser } = require("../controllers/validation");
 
 router.get('/', auth, getAll)
 router.post('/', bodyParser(), validateUser, createUser)
-router.post('/login', bodyParser(), auth, login)
+router.post('/login', bodyParser(), login)
 
 /**
  * Get all users

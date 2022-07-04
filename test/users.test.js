@@ -11,6 +11,16 @@ beforeAll(()=>{
     info.config.password = "7Qwp5a-5cC6SFPtyE-sfVC6M9bZzxfXw"
 })
 
+
+describe('Unauthorized Access to get all users', () => {
+    it('Should not return users', async () => {
+        const res = await request(app.callback()).get('/api/v1/users').send({})
+        expect(res.statusCode).toEqual(401)
+        expect(res.type).toEqual("text/plain")
+    })
+})
+
+
 describe('Get all users', () => {
     it('Return all users', async () => {
         const res = await request(app.callback()).get('/api/v1/users').send({})

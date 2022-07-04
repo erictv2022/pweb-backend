@@ -13,5 +13,6 @@ CREATE TABLE public.messages
     create_date timestamp    NOT NULL DEFAULT now(),
     deleted     bool         NOT NULL DEFAULT false,
     email       varchar(256) NOT NULL,
+    message     text         NOT NULL,
     CONSTRAINT messages_pkey PRIMARY KEY (id)
 );

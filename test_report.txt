@@ -1,0 +1,11 @@
+=============================== Coverage summary ===============================
+Statements   : 40.44% ( 182/450 )
+Branches     : 20% ( 7/35 )
+Functions    : 27.45% ( 14/51 )
+Lines        : 40.99% ( 182/444 )
+================================================================================
+Test Suites: 4 failed, 4 total
+Tests:       4 failed, 7 passed, 11 total
+Snapshots:   0 total
+Time:        8.341 s
+Ran all test suites.
